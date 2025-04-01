@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Cast Test</title>
+</head>
+<body>
+    <button id="cast"> Cast </button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/castjs/5.2.0/cast.min.js"></script>
+    <script>
+    var url = new URL(window.location.href);
+    var domain = url.searchParams.get("s");
+    const cjs = new Castjs();
+    document.getElementById('cast').addEventListener('click', function() {
+        if (cjs.available) {
+            //cjs.cast(domain + '/hls/stream.m3u8', {
+            cjs.cast('https://live.retrostrange.com/hls/stream.m3u8', {
+                poster     : domain + '/logo',
+                title      : domain,
+                description: 'Owncast live stream'
+            })
+        }
+    });
+    </script>
+</body>
+</html>
