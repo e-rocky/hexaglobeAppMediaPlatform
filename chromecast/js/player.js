@@ -127,7 +127,7 @@ $("#cast").on("click", () => {
   } else if (cjs.available) {
     var url = new URL(window.location.href);
     var source = url.searchParams.get("video");
-    if (/^https:\/\/.*m3u8$/.test(source) == false) {
+    if (/^https?:\/\/.*\.(mp4|m3u8)$/.test(source) == false) {
       alert("Unsupported URL");
       return;
     }
