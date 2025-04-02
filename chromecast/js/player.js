@@ -27,7 +27,8 @@ cjs.on("event", (e) => {
   } else if (e === "connect") {
     debug(e + "\t: " + cjs.device);
   } else if (e === "available") {
-    debug(e + "\t: castjs " + cjs.version);
+    //debug(e + "\t: castjs " + cjs.version);
+    debug(e + "\t: chromecast module ready");
   } else if (e === "buffering") {
     debug(e + "\t: " + cjs.timePretty);
   } else if (e === "mute") {
