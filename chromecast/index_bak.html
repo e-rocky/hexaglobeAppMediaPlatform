@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Cast Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://castjs.io/css/style.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>Cast.js Demo</h1>
+        <p>📺 Chromecast Sender Library for the Browser</p>
+        <a href="https://github.com/castjs/castjs" class="btn">View on GitHub</a>
+
+        <div class="col">
+
+            <div class="media">
+                <img src="/media/poster.jpg" class="poster">
+                <div class="title">Sintel (2010)</div>
+                <div class="description">Third Open Movie by Blender Foundation</div>
+                <div class="genres">
+                    <div class="genre">Animation</div>
+                    <div class="genre">Short</div>
+                    <div class="genre">Fantasy</div>
+                </div>
+                <div class="rating">
+                    <span>7.5</span>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half"></i>
+                </div>
+            </div>
+
+            <div class="clear"></div>
+
+            <div class="settings">
+                <i id="captions" data-jq-dropdown="#jq-dropdown-1" class="fas fa-closed-captioning"></i>
+                <div id="jq-dropdown-1" class="jq-dropdown jq-dropdown-tip">
+                    <ul class="jq-dropdown-menu">
+                        <li><a class="active" href="0">English</a></li>
+                        <li><a href="1">Spanish</a></li>
+                    </ul>
+                </div>
+                <i id="mute" class="fas fa-volume-up"></i>
+                <i id="cast" class="fab fa-chromecast disabled"></i>
+            </div>
+            <div class="timeline">
+                <div id="time">00:00:00</div>
+                <input id="range" type="range" min="0" max="100" step="1" value="0" style="position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0;">
+                <div class="rangeslider rangeslider--horizontal" id="js-rangeslider-0">
+                    <div class="rangeslider__fill" style="width: 10px;"></div>
+                    <div class="rangeslider__handle" style="left: 0px;"></div>
+                </div>
+                <div id="duration">00:00:00</div>
+            </div>
+            <div class="controls">
+                <i id="back" class="fas fa-history"></i>
+                <i id="play" class="fas fa-play"></i>
+                <i id="forward" class="fas fa-history fa-flip-horizontal"></i>
+            </div>
+            <div id="state">Disconnected</div>
+        </div>
+
+        <div class="col">
+            <textarea id="debug">[19:15:42] debugging : enabled
+                [19:15:48] error : Casting is not enabled in Firefox: Please enable casting, click here: https://googlechromecast.com/how-to-cast-firefox-to-tv/
+            </textarea>
+        </div>
+
+        <div class="clear"></div>
+        <h1>Getting Started</h1>
+        <pre> <code class="code language-html hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://cdnjs.cloudflare.com/ajax/libs/castjs/5.3.0/cast.min.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code>
+        </pre>
+        <pre> <code class="code language-js minus-margin hljs javascript">
+                <span class="hljs-comment">// Create new Castjs instance</span>
+                <span class="hljs-keyword">const</span> cjs = <span class="hljs-keyword">new</span> Castjs();
+
+                <span class="hljs-comment">// Optional metadata</span>
+                <span class="hljs-keyword">var</span> metadata = {
+                <span class="hljs-attr">poster</span> : <span class="hljs-string">'https://castjs.io/media/poster.jpg'</span>,
+                <span class="hljs-attr">title</span> : <span class="hljs-string">'Sintel'</span>,
+                <span class="hljs-attr">description</span>: <span class="hljs-string">'Third Open Movie by Blender Foundation'</span>,
+                <span class="hljs-attr">subtitles</span>: [{
+                <span class="hljs-attr">active</span>: <span class="hljs-literal">true</span>,
+                <span class="hljs-attr">label</span> : <span class="hljs-string">'English'</span>,
+                <span class="hljs-attr">src</span> : <span class="hljs-string">'https://castjs.io/media/english.vtt'</span>
+                }, {
+                <span class="hljs-attr">label</span> : <span class="hljs-string">'Spanish'</span>,
+                <span class="hljs-attr">src</span> : <span class="hljs-string">'https://castjs.io/media/spanish.vtt'</span>
+                }],
+                }
+
+                <span class="hljs-comment">// Wait for user interaction</span>
+                $(<span class="hljs-string">'#cast'</span>).on(<span class="hljs-string">'click'</span>, <span class="hljs-function">() =&gt;</span> {
+                <span class="hljs-keyword">if</span> (cjs.available) {
+                cjs.cast(<span class="hljs-string">'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4'</span>, metadata)
+                }
+                })
+            </code>
+        </pre>
+    </div>
+    <div class="container pt-4">
+        <div class="card text-dark bg-light">
+            <div class="card-header d-none">Enter a URL for an M3U8 video.</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 mb-3 d-none"><input id="url" class="form-control" type="text" value="https://live.retrostrange.com/hls/stream.m3u8"></div>
+                    <div class="col"><button id="cast" class="form-control btn-primary"> Play </button></div>
+                    <div class="col"><button id="cast" class="form-control btn-primary"> Pause </button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/castjs/5.2.0/cast.min.js"></script>
+    <script>
+        {
+            var url = new URL(window.location.href);
+            var domain = url.searchParams.get("s");
+            var source = url.searchParams.get("video");
+            var input = document.querySelector('#url')
+            const cjs = new Castjs();
+            console.log(source);
+            document.getElementById('cast').addEventListener('click', function () {
+                console.log("clicked");
+                if (cjs.available) {
+                    //cjs.cast(domain + '/hls/stream.m3u8', {
+                    if (/^https:\/\/.*m3u8$/.test(source) == false) {
+                        alert("Unsupported URL");
+                        return;
+                    }
+                    cjs.cast(input.value, {
+                        poster: domain + '/logo',
+                        title: domain,
+                        description: 'Hexaglobe POC flutter cast'
+                    })
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
