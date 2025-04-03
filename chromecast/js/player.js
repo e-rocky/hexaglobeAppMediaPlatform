@@ -106,9 +106,10 @@ cjs.on("error", (err) => {
 });
 
 var metadata = {
-  poster: "https://castjs.io/media/poster.jpg",
-  title: "Sintel",
-  description: "Third Open Movie by Blender Foundation",
+  poster:
+    "https://cdn.sforum.vn/sforum/wp-content/uploads/2022/05/google-chromecast-google-tv-va-android-tv-cover.jpg",
+  title: "Flutter",
+  description: "POC for chromecast",
   subtitles: [
     {
       active: true,
