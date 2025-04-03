@@ -109,7 +109,8 @@ var metadata = {
   poster:
     "https://cdn.sforum.vn/sforum/wp-content/uploads/2022/05/google-chromecast-google-tv-va-android-tv-cover.jpg",
   title: "POC Flutter - Chromecast",
-  description: "POC chromecast support in Flutter by randriatangy@bocasay.com",
+  description:
+    "POC Flutter - Chromecast support in Flutter by randriatangy@bocasay.com",
   subtitles: [
     {
       active: true,
@@ -134,7 +135,7 @@ $("#cast").on("click", () => {
       alert("Unsupported URL");
       return;
     }
-    metadata.description = title;
+    metadata.title = title;
     cjs.cast(source, metadata);
   }
 });
