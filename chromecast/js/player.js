@@ -108,8 +108,8 @@ cjs.on("error", (err) => {
 var metadata = {
   poster:
     "https://cdn.sforum.vn/sforum/wp-content/uploads/2022/05/google-chromecast-google-tv-va-android-tv-cover.jpg",
-  title: "Flutter",
-  description: "POC for chromecast",
+  title: "POC Flutter - Chromecast",
+  description: "POC chromecast support in Flutter by randriatangy@bocasay.com",
   subtitles: [
     {
       active: true,
@@ -129,10 +129,12 @@ $("#cast").on("click", () => {
   } else if (cjs.available) {
     var url = new URL(window.location.href);
     var source = url.searchParams.get("video");
+    var title = url.searchParams.get("title");
     if (/^https?:\/\/.*\.(mp4|m3u8)$/.test(source) == false) {
       alert("Unsupported URL");
       return;
     }
+    metadata.description = title;
     cjs.cast(source, metadata);
   }
 });
