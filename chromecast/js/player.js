@@ -131,7 +131,7 @@ $("#cast").on("click", () => {
     var url = new URL(window.location.href);
     var source = url.searchParams.get("video");
     var title = url.searchParams.get("title");
-    if (/^https?:\/\/.*\.(mp4|m3u8)$/.test(source) == false) {
+    if (/^https?:\/\/.*\.(mp4|mpd|m3u8)$/.test(source) == false) {
       alert("Unsupported URL");
       return;
     }
